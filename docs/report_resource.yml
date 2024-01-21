@@ -1,0 +1,23 @@
+get:
+  tags:
+    - Report
+  summary: "Get Formula 1 Q1 Report"
+  description: "Retrieve the report of Formula 1 Q1 lap times."
+  parameters:
+    - in: query
+      name: format
+      schema:
+        type: string
+      required: false
+      description: "The response format (json or xml)"
+    - in: query
+      name: order
+      schema:
+        type: string
+      required: false
+      description: "Order of the report (asc or desc)"
+  responses:
+    200:
+      description: "Successful retrieval of the report"
+    400:
+      description: "Invalid request"

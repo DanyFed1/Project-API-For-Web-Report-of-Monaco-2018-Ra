@@ -1,0 +1,7 @@
+swagger: '2.0'
+info:
+  title: F1 Q1 API
+  description: API for Formula 1 Q1 lap times.
+  version: "1.0.0"
+paths:
+  {}

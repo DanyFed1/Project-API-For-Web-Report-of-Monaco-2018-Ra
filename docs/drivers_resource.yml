@@ -1,0 +1,17 @@
+get:
+  tags:
+    - Drivers
+  summary: "List of all drivers"
+  description: "Retrieve a list of all drivers and their basic information."
+  parameters:
+    - in: query
+      name: format
+      schema:
+        type: string
+      required: false
+      description: "The response format (json or xml)"
+  responses:
+    200:
+      description: "Successful retrieval of the drivers list"
+    400:
+      description: "Invalid request"

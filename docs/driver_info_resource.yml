@@ -1,0 +1,23 @@
+get:
+  tags:
+    - Driver Information
+  summary: "Get specific driver information"
+  description: "Retrieve detailed information about a specific driver."
+  parameters:
+    - in: query
+      name: format
+      schema:
+        type: string
+      required: false
+      description: "The response format (json or xml)"
+    - in: path
+      name: driver_id
+      schema:
+        type: string
+      required: true
+      description: "The unique identifier of the driver"
+  responses:
+    200:
+      description: "Successful retrieval of the driver's information"
+    404:
+      description: "Driver not found"

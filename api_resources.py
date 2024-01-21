@@ -4,6 +4,15 @@ import json
 import xml.etree.ElementTree as ET
 
 def to_xml(data):
+    """
+    Convert a list of dictionaries or a single dictionary to an XML string.
+    Example:
+        to_xml([{'name': 'John', 'age': 30}, {'name': 'Jane', 'age': 25}])
+        b'<data><item><name>John</name><age>30</age></item><item><name>Jane</name><age>25</age></item></data>'
+
+        to_xml({'name': 'John', 'age': 30})
+        b'<driver><name>John</name><age>30</age></driver>'
+    """
     if isinstance(data, list):
         root = ET.Element('data')
         for item in data:
@@ -23,6 +32,12 @@ class ReportResource(Resource):
         self.report_generator = kwargs['report_generator']
 
     def get(self):
+        """
+        Get Formula 1 Q1 Report
+        ---
+        $ref: './docs/report_resource.yml'
+        """
+
         format_type = request.args.get('format', 'json')
         order = request.args.get('order', 'asc')
         print(f"Received request for ReportResource with format: {format_type}, order: {order}")
@@ -38,6 +53,12 @@ class DriversResource(Resource):
         self.report_generator = kwargs['report_generator']
 
     def get(self):
+        """
+        List of all drivers
+        ---
+        $ref: './docs/drivers_resource.yml'
+        """
+
         format_type = request.args.get('format', 'json')
         print(f"Received request for ReportResource with format: {format_type}")
 
@@ -52,6 +73,12 @@ class DriverInfoResource(Resource):
         self.report_generator = kwargs['report_generator']
 
     def get(self, driver_id):
+        """
+        Get specific driver information
+        ---
+        $ref: './docs/driver_info_resource.yml'
+        """
+
         format_type = request.args.get('format', 'json')
         print(f"Received request for ReportResource with format: {format_type}")
 

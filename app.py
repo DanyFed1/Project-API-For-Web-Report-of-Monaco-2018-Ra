@@ -6,7 +6,10 @@ from flasgger import Swagger
 
 app = Flask(__name__)
 api = Api(app)
-swagger = Swagger(app)
+
+
+# Configure Flasgger with the main Swagger template file
+swagger = Swagger(app, template_file='./docs/swagger_template.yml')  #http://localhost:5000/apidocs/    To access Swagger UI
 
 # Initialize the report generator object based on logic defined in
 # reporting_gen.py
