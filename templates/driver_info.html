@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Driver Information{% endblock %}
+
+{% block content %}
+    {% if driver_info %}
+        <h2 class="text-center">{{ driver_info.name }}</h2>
+        <table class="table table-bordered">
+            <tr>
+                <th>Team</th>
+                <td>{{ driver_info.team }}</td>
+            </tr>
+            <tr>
+                <th>Lap Time</th>
+                <td>{{ driver_info.lap_time }}</td>
+            </tr>
+        </table>
+    {% else %}
+        <p class="text-center">Driver information not found.</p>
+    {% endif %}
+{% endblock %}

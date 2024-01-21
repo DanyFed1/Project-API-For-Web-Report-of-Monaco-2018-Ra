@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Formula 1 Q1 Report{% endblock %}
+
+{% block content %}
+    <h2 class="text-center">Formula 1 - Qualifying Q1 Results</h2>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Position</th>
+                <th>Name</th>
+                <th>Team</th>
+                <th>Lap Time</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for driver in drivers %}
+                <tr class="{{ 'table-danger' if driver.eliminated }}">
+                    <td>{{ driver.position }}</td>
+                    <td>{{ driver.name }}</td>
+                    <td>{{ driver.team }}</td>
+                    <td>{{ driver.lap_time }}</td>
+                    <td>{{ 'ELIMINATED' if driver.eliminated }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
