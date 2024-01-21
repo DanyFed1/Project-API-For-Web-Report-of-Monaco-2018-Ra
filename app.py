@@ -14,9 +14,9 @@ processor = rpg.Q1Processor('./files')
 report_generator = rpg.Q1ReportGenerator(processor)
 
 # API endpoints with versioning
-api.add_resource(ReportResource, '/api/v1/report', resource_class_kwargs={'report_generator': report_generator})
-api.add_resource(DriversResource, '/api/v1/drivers', resource_class_kwargs={'report_generator': report_generator})
-api.add_resource(DriverInfoResource, '/api/v1/drivers/<driver_id>', resource_class_kwargs={'report_generator': report_generator})
+api.add_resource(ReportResource, '/api/v1/report/', resource_class_kwargs={'report_generator': report_generator})
+api.add_resource(DriversResource, '/api/v1/drivers/', resource_class_kwargs={'report_generator': report_generator})
+api.add_resource(DriverInfoResource, '/api/v1/drivers/<driver_id>/', resource_class_kwargs={'report_generator': report_generator})
 
 
 #Web Interface endpoits

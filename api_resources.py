@@ -1,5 +1,5 @@
 from flask_restful import Resource
-from flask import request
+from flask import request, Response
 import json
 import xml.etree.ElementTree as ET
 
@@ -25,9 +25,12 @@ class ReportResource(Resource):
     def get(self):
         format_type = request.args.get('format', 'json')
         order = request.args.get('order', 'asc')
+        print(f"Received request for ReportResource with format: {format_type}, order: {order}")
+
         report_data = self.report_generator.get_report_data(order)
         if format_type == 'xml':
-            return to_xml(report_data)
+            xml_data = to_xml(report_data)
+            return Response(xml_data, mimetype='application/xml')
         return report_data
 
 class DriversResource(Resource):
@@ -36,9 +39,12 @@ class DriversResource(Resource):
 
     def get(self):
         format_type = request.args.get('format', 'json')
+        print(f"Received request for ReportResource with format: {format_type}")
+
         drivers_data = self.report_generator.get_all_drivers()
         if format_type == 'xml':
-            return to_xml(drivers_data)
+            xml_data = to_xml(drivers_data)
+            return Response(xml_data, mimetype='application/xml')
         return drivers_data
 
 class DriverInfoResource(Resource):
@@ -47,7 +53,10 @@ class DriverInfoResource(Resource):
 
     def get(self, driver_id):
         format_type = request.args.get('format', 'json')
+        print(f"Received request for ReportResource with format: {format_type}")
+
         driver_info = self.report_generator.get_driver_info(driver_id)
         if format_type == 'xml':
-            return to_xml(driver_info)
+            xml_data = to_xml(driver_info)
+            return Response(xml_data, mimetype='application/xml')
         return driver_info
