@@ -8,11 +8,10 @@ app = Flask(__name__)
 api = Api(app)
 
 
-# Configure Flasgger with the main Swagger template file
-swagger = Swagger(app, template_file='./docs/swagger_template.yml')  #http://localhost:5000/apidocs/    To access Swagger UI
+# Configure Flasgger e
+swagger = Swagger(app)
 
-# Initialize the report generator object based on logic defined in
-# reporting_gen.py
+# Initialize the report generator object based on logic defined in reporting_gen.py
 processor = rpg.Q1Processor('./files')
 report_generator = rpg.Q1ReportGenerator(processor)
 
