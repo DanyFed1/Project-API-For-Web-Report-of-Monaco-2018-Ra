@@ -1,11 +1,10 @@
+from datetime import datetime
+import reporting_gen as rpg
+from unittest.mock import patch, mock_open
 import sys
 import os
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-from unittest.mock import patch, mock_open
-import reporting_gen as rpg
-from datetime import datetime
 
 
 # Sample data inpit for testing
@@ -68,13 +67,17 @@ class TestQ1ReportGenerator:
     def test_rank_drivers(self, mock_process_files):
         processor = rpg.Q1Processor("/some/path")
         processor.drivers = {
-            "SVF": rpg.DriverLapInfo("SVF", datetime(2018, 5, 24, 12, 2, 58, 917)),
-            "NHR": rpg.DriverLapInfo("NHR", datetime(2018, 5, 24, 12, 2, 49, 914))
-        }
-        processor.drivers["SVF"].end_time = datetime(2018, 5, 24, 12, 4, 3, 332)
+            "SVF": rpg.DriverLapInfo(
+                "SVF", datetime(
+                    2018, 5, 24, 12, 2, 58, 917)), "NHR": rpg.DriverLapInfo(
+                "NHR", datetime(
+                    2018, 5, 24, 12, 2, 49, 914))}
+        processor.drivers["SVF"].end_time = datetime(
+            2018, 5, 24, 12, 4, 3, 332)
         processor.drivers["SVF"].driver_name = "Sebastian Vettel"
         processor.drivers["SVF"].team = "FERRARI"
-        processor.drivers["NHR"].end_time = datetime(2018, 5, 24, 12, 4, 2, 979)
+        processor.drivers["NHR"].end_time = datetime(
+            2018, 5, 24, 12, 4, 2, 979)
         processor.drivers["NHR"].driver_name = "Nico Hulkenberg"
         processor.drivers["NHR"].team = "RENAULT"
 
@@ -85,13 +88,17 @@ class TestQ1ReportGenerator:
     def test_print_report(self, capsys):
         processor = rpg.Q1Processor("/some/path")
         processor.drivers = {
-            "SVF": rpg.DriverLapInfo("SVF", datetime(2018, 5, 24, 12, 2, 58, 917)),
-            "NHR": rpg.DriverLapInfo("NHR", datetime(2018, 5, 24, 12, 2, 49, 914))
-        }
-        processor.drivers["SVF"].end_time = datetime(2018, 5, 24, 12, 4, 3, 332)
+            "SVF": rpg.DriverLapInfo(
+                "SVF", datetime(
+                    2018, 5, 24, 12, 2, 58, 917)), "NHR": rpg.DriverLapInfo(
+                "NHR", datetime(
+                    2018, 5, 24, 12, 2, 49, 914))}
+        processor.drivers["SVF"].end_time = datetime(
+            2018, 5, 24, 12, 4, 3, 332)
         processor.drivers["SVF"].driver_name = "Sebastian Vettel"
         processor.drivers["SVF"].team = "FERRARI"
-        processor.drivers["NHR"].end_time = datetime(2018, 5, 24, 12, 4, 2, 979)
+        processor.drivers["NHR"].end_time = datetime(
+            2018, 5, 24, 12, 4, 2, 979)
         processor.drivers["NHR"].driver_name = "Nico Hulkenberg"
         processor.drivers["NHR"].team = "RENAULT"
 
@@ -104,9 +111,11 @@ class TestQ1ReportGenerator:
     def test_driver_info(self):
         processor = rpg.Q1Processor("/some/path")
         processor.drivers = {
-            "SVF": rpg.DriverLapInfo("SVF", datetime(2018, 5, 24, 12, 2, 58, 917))
-        }
-        processor.drivers["SVF"].end_time = datetime(2018, 5, 24, 12, 4, 3, 332)
+            "SVF": rpg.DriverLapInfo(
+                "SVF", datetime(
+                    2018, 5, 24, 12, 2, 58, 917))}
+        processor.drivers["SVF"].end_time = datetime(
+            2018, 5, 24, 12, 4, 3, 332)
         processor.drivers["SVF"].driver_name = "Sebastian Vettel"
         processor.drivers["SVF"].team = "FERRARI"
 
@@ -118,11 +127,34 @@ class TestQ1ReportGenerator:
     def test_get_report_data(self):
         processor = rpg.Q1Processor("/some/path")
         processor.drivers = {
-            "SVF": rpg.DriverLapInfo("SVF", datetime(2018, 5, 24, 12, 2, 58, 917), "Sebastian Vettel", "FERRARI"),
-            "NHR": rpg.DriverLapInfo("NHR", datetime(2018, 5, 24, 12, 2, 49, 914), "Nico Hulkenberg", "RENAULT")
-        }
-        processor.drivers["SVF"].end_time = datetime(2018, 5, 24, 12, 4, 3, 332)
-        processor.drivers["NHR"].end_time = datetime(2018, 5, 24, 12, 4, 2, 979)
+            "SVF": rpg.DriverLapInfo(
+                "SVF",
+                datetime(
+                    2018,
+                    5,
+                    24,
+                    12,
+                    2,
+                    58,
+                    917),
+                "Sebastian Vettel",
+                "FERRARI"),
+            "NHR": rpg.DriverLapInfo(
+                "NHR",
+                datetime(
+                    2018,
+                    5,
+                    24,
+                    12,
+                    2,
+                    49,
+                    914),
+                "Nico Hulkenberg",
+                "RENAULT")}
+        processor.drivers["SVF"].end_time = datetime(
+            2018, 5, 24, 12, 4, 3, 332)
+        processor.drivers["NHR"].end_time = datetime(
+            2018, 5, 24, 12, 4, 2, 979)
 
         report_generator = rpg.Q1ReportGenerator(processor)
         report_data = report_generator.get_report_data('asc')
@@ -135,11 +167,34 @@ class TestQ1ReportGenerator:
     def test_get_all_drivers(self):
         processor = rpg.Q1Processor("/some/path")
         processor.drivers = {
-            "SVF": rpg.DriverLapInfo("SVF", datetime(2018, 5, 24, 12, 2, 58, 917), "Sebastian Vettel", "FERRARI"),
-            "NHR": rpg.DriverLapInfo("NHR", datetime(2018, 5, 24, 12, 2, 49, 914), "Nico Hulkenberg", "RENAULT")
-        }
-        processor.drivers["SVF"].end_time = datetime(2018, 5, 24, 12, 4, 3, 332)
-        processor.drivers["NHR"].end_time = datetime(2018, 5, 24, 12, 4, 2, 979)
+            "SVF": rpg.DriverLapInfo(
+                "SVF",
+                datetime(
+                    2018,
+                    5,
+                    24,
+                    12,
+                    2,
+                    58,
+                    917),
+                "Sebastian Vettel",
+                "FERRARI"),
+            "NHR": rpg.DriverLapInfo(
+                "NHR",
+                datetime(
+                    2018,
+                    5,
+                    24,
+                    12,
+                    2,
+                    49,
+                    914),
+                "Nico Hulkenberg",
+                "RENAULT")}
+        processor.drivers["SVF"].end_time = datetime(
+            2018, 5, 24, 12, 4, 3, 332)
+        processor.drivers["NHR"].end_time = datetime(
+            2018, 5, 24, 12, 4, 2, 979)
 
         report_generator = rpg.Q1ReportGenerator(processor)
         drivers = report_generator.get_all_drivers()
@@ -152,9 +207,11 @@ class TestQ1ReportGenerator:
         processor = rpg.Q1Processor("/some/path")
         # Populate processor with sample data
         processor.drivers = {
-            "SVF": rpg.DriverLapInfo("SVF", datetime(2018, 5, 24, 12, 2, 58, 917))
-        }
-        processor.drivers["SVF"].end_time = datetime(2018, 5, 24, 12, 4, 3, 332)
+            "SVF": rpg.DriverLapInfo(
+                "SVF", datetime(
+                    2018, 5, 24, 12, 2, 58, 917))}
+        processor.drivers["SVF"].end_time = datetime(
+            2018, 5, 24, 12, 4, 3, 332)
         processor.drivers["SVF"].driver_name = "Sebastian Vettel"
         processor.drivers["SVF"].team = "FERRARI"
 
@@ -163,6 +220,9 @@ class TestQ1ReportGenerator:
         assert driver_info['name'] == "Sebastian Vettel"
         assert driver_info['team'] == "FERRARI"
 
-#Usage:
+
+
+
+# Usage:
 # export PYTHONPATH=$PYTHONPATH:$(pwd)
 # pytest tests/test_report_gen.py

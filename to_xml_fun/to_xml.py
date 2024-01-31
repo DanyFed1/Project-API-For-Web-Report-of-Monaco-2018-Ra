@@ -1,4 +1,6 @@
 import xml.etree.ElementTree as ET
+
+
 def to_xml(data):
     """
     Convert a list of dictionaries or a single dictionary to an XML string.

@@ -2,7 +2,11 @@ from flask import request, Response
 from to_xml_fun import to_xml
 from functools import wraps
 
+
 def response_format(func):
+
+    # use of wraps decorator is necessary to make sure that attributes to
+    # match those of the original function for swagger to work correctly
     @wraps(func)
     def wrapper(*args, **kwargs):
         data = func(*args, **kwargs)
