@@ -8,4 +8,4 @@ This project evolves the F1 Q1 Lap Time Report Generator into a RESTful API usin
 - Support for response formatting in both JSON and XML formats.
 - API versioning to support future expansions and modifications seamlessly.
 - Swagger UI integration for interactive API documentation and testing.
-- Unit tests covering the API functionality and response formats.
+- Tests covering the API functionality and response formats.
